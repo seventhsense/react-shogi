@@ -1,0 +1,75 @@
+{
+  "turn": 1,
+  "base": [[], []],
+  "data": [
+    [
+      {"id": 1, "owner": 2, "promote": false, "type": "lance"},
+      {"id": 2, "owner": 2, "promote": false, "type": "knight"},
+      {"id": 3, "owner": 2, "promote": false, "type": "silver"},
+      {"id": 4, "owner": 2, "promote": false, "type": "gold"},
+      {"id": 5, "owner": 2, "promote": false, "type": "king"},
+      {"id": 6, "owner": 2, "promote": false, "type": "gold"},
+      {"id": 7, "owner": 2, "promote": false, "type": "silver"},
+      {"id": 8, "owner": 2, "promote": false, "type": "knight"},
+      {"id": 9, "owner": 2, "promote": false, "type": "lance"}
+    ],
+    [
+      0,
+      {"id": 10, "owner": 2, "promote": false, "type": "rook"},
+      0,
+      0,
+      0,
+      0,
+      0,
+      {"id": 11, "owner": 2, "promote": false, "type": "bishop"},
+      0
+    ],
+    [
+      {"id": 12, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 13, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 14, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 15, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 16, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 17, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 18, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 19, "owner": 2, "promote": false, "type": "pawn"},
+      {"id": 20, "owner": 2, "promote": false, "type": "pawn"}
+    ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [
+      {"id": 21, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 22, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 23, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 24, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 25, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 26, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 27, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 28, "owner": 1, "promote": false, "type": "pawn"},
+      {"id": 29, "owner": 1, "promote": false, "type": "pawn"}
+    ],
+    [
+      0,
+      {"id": 30, "owner": 1, "promote": false, "type": "bishop"},
+      0,
+      0,
+      0,
+      0,
+      0,
+      {"id": 31, "owner": 1, "promote": false, "type": "rook"},
+      0
+    ],
+    [
+      {"id": 32, "owner": 1, "promote": false, "type": "lance"},
+      {"id": 33, "owner": 1, "promote": false, "type": "knight"},
+      {"id": 34, "owner": 1, "promote": false, "type": "silver"},
+      {"id": 35, "owner": 1, "promote": false, "type": "gold"},
+      {"id": 36, "owner": 1, "promote": false, "type": "king"},
+      {"id": 37, "owner": 1, "promote": false, "type": "gold"},
+      {"id": 38, "owner": 1, "promote": false, "type": "silver"},
+      {"id": 39, "owner": 1, "promote": false, "type": "knight"},
+      {"id": 40, "owner": 1, "promote": false, "type": "lance"}
+    ]
+  ]
+}
