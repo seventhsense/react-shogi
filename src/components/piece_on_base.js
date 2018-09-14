@@ -1,7 +1,6 @@
 import React from 'react'
 import { DragSource } from 'react-dnd'
 import set_image from './set_image'
-import { defaultProps } from 'recompose';
 
 const type = 'piece'
 const spec = {
@@ -36,7 +35,7 @@ class PieceOnBase extends React.Component {
         opacity: isDragging ? 0.5 : 1,
         cursor: canDrag ? 'pointer' : 'auto',
       }}>
-        <img src={img}/>
+        <img src={img} alt=""/>
       </div>
     )
   }
