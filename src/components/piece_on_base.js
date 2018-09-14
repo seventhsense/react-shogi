@@ -1,9 +1,13 @@
 import React from 'react'
 import { DragSource } from 'react-dnd'
 import set_image from './set_image'
+import { defaultProps } from 'recompose';
 
 const type = 'piece'
 const spec = {
+  canDrag(props) {
+    return (props.data[0].owner === props.turn)
+  },
   beginDrag(props) {
     return {
       data: props.data[0],
@@ -16,17 +20,22 @@ const spec = {
 function collect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
+    isDragging: monitor.isDragging(),
+    canDrag: monitor.canDrag()
   }
 }
 
 class PieceOnBase extends React.Component {
   render() {
-    const { connectDragSource, isDragging, data } = this.props
+    const { connectDragSource, isDragging, canDrag, data } = this.props
     const piece = data[0]
     const img = set_image(piece)
     return connectDragSource(
-      <div style={{display: 'inline'}}>
+      <div style={{
+        display: 'inline',
+        opacity: isDragging ? 0.5 : 1,
+        cursor: canDrag ? 'pointer' : 'auto',
+      }}>
         <img src={img}/>
       </div>
     )

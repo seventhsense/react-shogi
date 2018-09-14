@@ -9,11 +9,12 @@ import { connect } from 'react-redux'
 class App extends Component {
   render() {
     const [base1, base2] = this.props.base
+    const turn = this.props.turn
     return (
       <div>
-        <Base name="base2" data={base2}/>
+        <Base name="base2" data={base2} turn={turn}/>
         <Board {...this.props}/>
-        <Base name="base1" data={base1}/>
+        <Base name="base1" data={base1} turn={turn}/>
       </div>
     )
   }

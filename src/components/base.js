@@ -6,7 +6,7 @@ class Base extends React.Component {
     const count = data.length
     return (
       <div>
-        <PieceOnBase data={data}/> × {count}
+        <PieceOnBase data={data} turn={this.props.turn}/> × {count}
       </div>
     )
   }
