@@ -4,6 +4,7 @@ import MultiBackend from 'react-dnd-multi-backend'
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'
 import Board from './components/board'
 import Base from './components/base'
+import PromoteModal from './components/promote_modal'
 import { connect } from 'react-redux'
 
 class App extends Component {
@@ -15,6 +16,11 @@ class App extends Component {
         <Base name="base2" data={base2} turn={turn}/>
         <Board {...this.props}/>
         <Base name="base1" data={base1} turn={turn}/>
+        <PromoteModal
+          open={this.props.promote_modal}
+          data={this.props.promote_data}
+          moveTo={this.props.moveTo}
+        />
       </div>
     )
   }

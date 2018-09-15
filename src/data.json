@@ -1,6 +1,7 @@
 {
   "turn": 1,
   "base": [[], []],
+  "promote_modal": false,
   "data": [
     [
       {"id": 1, "owner": 2, "promote": false, "type": "lance"},
