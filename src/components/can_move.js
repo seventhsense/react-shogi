@@ -112,6 +112,11 @@ const canMove = (x, y, board_data, data, fromX, fromY) => {
           }
         }
       }
+      if (data.promote === true) {
+        if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
+          result = true
+        }
+      }
       break
     case 'bishop':
       if (dx === dy) {
@@ -127,7 +132,13 @@ const canMove = (x, y, board_data, data, fromX, fromY) => {
           j += inc
         }
       }
+      if (data.promote === true) {
+        if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
+          result = true
+        }
+      }
       break
+
     default: // gold move
       if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
         if ((fromY - y === -1 && dx === 1 && data.owner === 1) || 

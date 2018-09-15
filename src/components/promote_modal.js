@@ -27,13 +27,13 @@ class PromoteModal extends React.Component {G3
           <DialogContent>
             <div style={{display: 'inline'}}>
             <img
-              src={img2} 
+              src={img2} alt=""
               onClick={()=>this.props.moveTo(promote_data.data, x, y, fromX, fromY)} 
             />
             </div>
             <div style={{display: 'inline'}}>
             <img
-              src={img1}  
+              src={img1} alt="" 
           onClick={()=>{
               promote_data.data.promote = promote_data.data.promote ? !promote_data.data.promote : promote_data.data.promote
               this.props.moveTo(promote_data.data, x, y, fromX, fromY)} 
