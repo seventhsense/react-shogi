@@ -5,6 +5,8 @@ import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'
 import Board from './components/board'
 import Base from './components/base'
 import PromoteModal from './components/promote_modal'
+import Menu from './components/menu'
+import GameEnd from './components/game_end'
 import { connect } from 'react-redux'
 
 class App extends Component {
@@ -20,6 +22,15 @@ class App extends Component {
           open={this.props.promote_modal}
           data={this.props.promote_data}
           moveTo={this.props.moveTo}
+        />
+        <Menu
+          open={this.props.menu}
+          startGame={this.props.startGame}
+        />
+        <GameEnd
+          open={this.props.game_end}
+          winner={this.props.winner}
+          restartGame={this.props.restartGame}
         />
       </div>
     )
@@ -42,6 +53,14 @@ const mapDispatchToProps = (dispatch) => {
         y: y,
         fromX: fromX,
         fromY: fromY
+      }),
+    startGame: ()=>
+      dispatch({
+        type: 'START'
+      }),
+    restartGame: ()=>
+      dispatch({
+        type: 'RESTART'
       })
   }
 }

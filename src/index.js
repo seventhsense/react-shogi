@@ -12,8 +12,8 @@ const logger = store => next => action => {
   console.log(store.getState())
 }
 
-// const store = createStore(reducer, json, applyMiddleware(logger))
-const store = createStore(reducer, json)
+const store = createStore(reducer, json, applyMiddleware(logger))
+// const store = createStore(reducer, json)
 
 ReactDOM.render(
   <Provider store={store}>
