@@ -2,8 +2,8 @@ export const reducer = (state, action) => {
   switch(action.type) {
     case 'MOVE':
       // promote
-      if ((action.fromX !== -1 && action.fromY !== -1) && action.data.promote === false){
-        if (action.data.owner === 1 && action.y <= 2 && state.promote_modal === false) {
+      if ((action.fromX !== -1 && action.fromY !== -1) && action.data.promote === false && (action.data.type !== 'king' || action.data.type !== 'gold')){
+        if (action.data.owner === 1 && (action.y <= 2 || action.fromY <= 2) && state.promote_modal === false) {
           state = {
             ...state,
             promote_modal: true,
@@ -11,7 +11,7 @@ export const reducer = (state, action) => {
           }
           return state
         }
-        if (action.data.owner === 2 && action.y >= 6 && state.promote_modal === false) {
+        if (action.data.owner === 2 && (action.y >= 6 || action.fromY >= 6) && state.promote_modal === false) {
           state = {
             ...state,
             promote_modal: true,

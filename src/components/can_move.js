@@ -1,3 +1,18 @@
+const goldMove = (x, y, board_data, data, fromX, fromY) => {
+  const dx = Math.abs(x - fromX)
+  const dy = Math.abs(y - fromY)
+  let result = false
+  if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
+    if ((fromY - y === -1 && dx === 1 && data.owner === 1) || 
+        (fromY - y === 1 && dx === 1 && data.owner === 2)) {
+          result = false
+    } else {
+      result = true
+    }
+  }
+  return result
+}
+
 const canMove = (x, y, board_data, data, fromX, fromY) => {
   let result = false
   // 味方がいるマスには移動できない
@@ -46,50 +61,66 @@ const canMove = (x, y, board_data, data, fromX, fromY) => {
       }
       break
     case 'silver':
-      if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
-        if ((dx === 1 && dy ===0 ) || 
-            (fromY - y === -1 && dx === 0 && data.owner === 1) || 
-            (fromY - y === 1 && dx === 0 && data.owner === 2)){
-              result = false
-        } else {
-          result = true
+      if (data.promote === false) {
+        if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
+          if ((dx === 1 && dy ===0 ) || 
+              (fromY - y === -1 && dx === 0 && data.owner === 1) || 
+              (fromY - y === 1 && dx === 0 && data.owner === 2)){
+                result = false
+          } else {
+            result = true
+          }
         }
+      } else {
+        result = goldMove(x, y, board_data, data, fromX, fromY)
       }
       break
     case 'knight':
-      if ((data.owner === 1 && dx === 1 && fromY - y === 2) ||
-          (data.owner === 2 && dx === 1 && fromY - y === -2)) {
-            result = true
+      if (data.promote === false) {
+        if ((data.owner === 1 && dx === 1 && fromY - y === 2) ||
+            (data.owner === 2 && dx === 1 && fromY - y === -2)) {
+              result = true
+        }
+      } else {
+        result = goldMove(x, y, board_data, data, fromX, fromY)
       }
       break
     case 'lance':
-      if (data.owner === 1 && dx === 0 & fromY - y > 0) {
-        result = true
-        for (let i = y + 1; i < fromY; i++) {
-          if (board_data[i][x] !== 0) {
-            result = false
-            break
+      if (data.promote === false) {
+        if (data.owner === 1 && dx === 0 & fromY - y > 0) {
+          result = true
+          for (let i = y + 1; i < fromY; i++) {
+            if (board_data[i][x] !== 0) {
+              result = false
+              break
+            }
+          }
+        } else if (data.owner === 2 && dx === 0 & fromY - y < 0) {
+          result = true
+          for (let i = fromY + 1; i < y; i++) {
+            if (board_data[i][x] !== 0) {
+              result = false
+              break
+            }
           }
         }
-      } else if (data.owner === 2 && dx === 0 & fromY - y < 0) {
-        result = true
-        for (let i = fromY + 1; i < y; i++) {
-          if (board_data[i][x] !== 0) {
-            result = false
-            break
-          }
-        }
+      } else {
+        result = goldMove(x, y, board_data, data, fromX, fromY)
       }
       break
     case 'pawn':
-      if (x !== fromX) {
-        result = false
-      } else {
-        if (fromY - y === 1 && data.owner === 1){
-          result = true
-        } else if (y - fromY === 1 && data.owner ===2){
-          result = true
+      if (data.promote === false) {
+        if (x !== fromX) {
+          result = false
+        } else {
+          if (fromY - y === 1 && data.owner === 1){
+            result = true
+          } else if (y - fromY === 1 && data.owner ===2){
+            result = true
+          }
         }
+      } else {
+        result = goldMove(x, y, board_data, data, fromX, fromY)
       }
       break
     case 'rook':
@@ -140,14 +171,7 @@ const canMove = (x, y, board_data, data, fromX, fromY) => {
       break
 
     default: // gold move
-      if ((dx === 1 || dy === 1) && (dx * dy < 2)) {
-        if ((fromY - y === -1 && dx === 1 && data.owner === 1) || 
-            (fromY - y === 1 && dx === 1 && data.owner === 2)) {
-              result = false
-        } else {
-          result = true
-        }
-      }
+      result = goldMove(x, y, board_data, data, fromX, fromY)
       break
   }
   return result
