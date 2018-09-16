@@ -1,5 +1,3 @@
-import initial from './data.json'
-
 export const reducer = (state, action) => {
   switch(action.type) {
     case 'START':
@@ -9,9 +7,8 @@ export const reducer = (state, action) => {
       }
       break
     case 'RESTART':
-      state = {
-        ...initial
-      }
+      console.log(action.payload)
+      state = action.payload
       break
     case 'MOVE':
       let pieceTo = state.data[action.y][action.x]

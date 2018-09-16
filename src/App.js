@@ -8,6 +8,7 @@ import PromoteModal from './components/promote_modal'
 import Menu from './components/menu'
 import GameEnd from './components/game_end'
 import { connect } from 'react-redux'
+import initial from './data.json'
 
 class App extends Component {
   render() {
@@ -60,7 +61,8 @@ const mapDispatchToProps = (dispatch) => {
       }),
     restartGame: ()=>
       dispatch({
-        type: 'RESTART'
+        type: 'RESTART',
+        payload: initial
       })
   }
 }
