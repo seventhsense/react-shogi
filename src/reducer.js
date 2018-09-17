@@ -1,14 +1,31 @@
 export const reducer = (state, action) => {
   switch(action.type) {
     case 'START':
+      // create deep copy for initial state
+      const initial_data = state.data.map((row) => {
+        return row.map( (item) => {
+          return item
+        })
+      })
+      const initial_base = state.base.map((row) => {
+        return row.map((item) => {
+          return item
+        })
+      })
+      const initial_state = {
+        ...state,
+        base: initial_base,
+        data: initial_data,
+      }
       state = {
         ...state,
-        menu: false
+        menu: false,
+        initial: initial_state
       }
       break
     case 'RESTART':
       console.log(action.payload)
-      state = action.payload
+      state = state.initial
       break
     case 'MOVE':
       let pieceTo = state.data[action.y][action.x]
