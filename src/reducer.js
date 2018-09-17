@@ -24,37 +24,11 @@ export const reducer = (state, action) => {
       }
       break
     case 'RESTART':
-      console.log(action.payload)
       state = state.initial
       break
     case 'MOVE':
       let pieceTo = state.data[action.y][action.x]
       const i = state.turn === 1 ? 0 : 1
-      // 移動先の駒の処理
-      if (pieceTo !== 0) {
-        if (pieceTo.type === 'king') {
-          state = {
-            ...state,
-            game_end: true,
-            winner: state.turn
-          }
-          return state
-        }
-        pieceTo = {
-          ...pieceTo,
-          owner: state.turn,
-          promote: false
-        }
-        state.base[i].push(pieceTo)
-      }
-      state.data[action.y][action.x] = action.data
-      //　移動元の駒の処理
-      if (action.fromX === -1 && action.fromY === -1){
-      state.base[i] = state.base[i]
-          .filter(v => v.id !== action.data.id)
-      } else {
-        state.data[action.fromY][action.fromX] = 0
-      }
       // promote
       if ((action.fromX !== -1 && action.fromY !== -1) && 
         action.data.promote === false && 
@@ -79,6 +53,32 @@ export const reducer = (state, action) => {
           }
           return state
         }
+      }
+      // 移動先の駒の処理
+      if (pieceTo !== 0) {
+        // Game end
+        if (pieceTo.type === 'king') {
+          state = {
+            ...state,
+            game_end: true,
+            winner: state.turn
+          }
+          return state
+        }
+        pieceTo = {
+          ...pieceTo,
+          owner: state.turn,
+          promote: false
+        }
+        state.base[i].push(pieceTo)
+      }
+      state.data[action.y][action.x] = action.data
+      //　移動元の駒の処理
+      if (action.fromX === -1 && action.fromY === -1){
+      state.base[i] = state.base[i]
+          .filter(v => v.id !== action.data.id)
+      } else {
+        state.data[action.fromY][action.fromX] = 0
       }
       // create new array
       const new_data = state.data.map((row) => {
