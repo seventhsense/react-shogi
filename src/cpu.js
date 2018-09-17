@@ -1,4 +1,6 @@
 import canMove from './components/can_move'
+import evaluate from './evaluate'
+import movable from './movable'
 
 const cpu = store => next => action => {
 
@@ -10,11 +12,23 @@ const cpu = store => next => action => {
 
   let piece
   let x, y
+  let moves
+  let rnd
+  let checker = true
+  let value
   do {
     piece = candidate[Math.floor(Math.random() * candidate.length)]
-    x = Math.floor(Math.random() * 9)
-    y = Math.floor(Math.random() * 9)
-  } while(!canMove(x, y, data, piece, piece.x, piece.y))
+    moves = movable(data, piece)
+    if (moves.length === 0) { continue }
+    checker = false
+    rnd = Math.floor(Math.random() * moves.length)
+    x = moves[rnd][0]
+    y = moves[rnd][1]
+    value = evaluate(store.getState())
+  } while(checker)
+
+  console.log(movable(data, piece))
+
 
   // const others = [].concat(...data).filter(v => v.owner === 1)
   if (turn === 2) {
