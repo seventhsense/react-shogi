@@ -12,7 +12,7 @@ class GameEnd extends React.Component {
       >
         <DialogContent>
           <DialogContentText>
-            Winner is {this.props.winner}
+            Winner is Player{this.props.winner}
           </DialogContentText>
           <Button onClick={this.props.restartGame}>
             restart

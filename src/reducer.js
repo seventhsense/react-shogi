@@ -29,7 +29,16 @@ export const reducer = (state, action) => {
     case 'MOVE':
       let pieceTo = state.data[action.y][action.x]
       const i = state.turn === 1 ? 0 : 1
-      // promote
+      // Game end
+      if (pieceTo !== 0 && pieceTo.type === 'king') {
+        state = {
+          ...state,
+          game_end: true,
+          winner: state.turn
+        }
+        return state
+      }
+      // promote check
       if ((action.fromX !== -1 && action.fromY !== -1) && 
         action.data.promote === false && 
         (action.data.type !== 'king' || action.data.type !== 'gold')){
@@ -56,21 +65,19 @@ export const reducer = (state, action) => {
       }
       // 移動先の駒の処理
       if (pieceTo !== 0) {
-        // Game end
-        if (pieceTo.type === 'king') {
-          state = {
-            ...state,
-            game_end: true,
-            winner: state.turn
-          }
-          return state
-        }
         pieceTo = {
           ...pieceTo,
           owner: state.turn,
-          promote: false
+          promote: false,
+          x: -1,
+          y: -1
         }
         state.base[i].push(pieceTo)
+      }
+      action.data = {
+        ...action.data,
+        x: action.x,
+        y: action.y
       }
       state.data[action.y][action.x] = action.data
       //　移動元の駒の処理
@@ -80,7 +87,7 @@ export const reducer = (state, action) => {
       } else {
         state.data[action.fromY][action.fromX] = 0
       }
-      // create new array
+      // deep copy
       const new_data = state.data.map((row) => {
         return row.map( (item) => {
           return item
